@@ -15,3 +15,9 @@ Could sharing a school run actually mean more driving? AirDay lets families comp
 **Changes.** Added city-specific modelled PM₂.₅ with timestamps, route comparisons including detours, personalised household actions, validation and an on-device AI briefing to the original offline prototype.
 
 **Generative AI services.** Google Antigravity assisted with source and uncertainty rules for the planning prompt. Chrome's Prompt API invokes Gemini Nano on compatible devices to explain a household's calculated plan in English.
+
+## Revising the route worksheet
+
+Claude Opus 4.6 in Google Antigravity implemented the revised frontend. One design test was whether a family could tell when sharing a car adds driving. The worksheet puts both distances on the same scale and updates its advice when a detour makes the shared route longer. A second test uses equal routes to check that the app reports a tie.
+
+The route comparison is calculated locally. The optional family briefing uses on-device Gemini Nano, with the city estimate and the calculated plan supplied as context.

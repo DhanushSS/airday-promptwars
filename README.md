@@ -16,6 +16,21 @@ Google Antigravity helped design the source-aware runtime prompt. On compatible 
 
 ## Verification
 
-Run `node --test` (Node 22) for six tests covering route savings, detours, invalid inputs, household alternatives and reading validity. The interface uses labelled native controls, keyboard focus outlines, responsive columns and live regions. All provider and model output is rendered as text.
+Run `node --test` (Node 22) for the planner tests covering route savings, detours, invalid inputs, household alternatives and reading validity. The interface uses labelled native controls, keyboard focus outlines, responsive columns and live regions. All provider and model output is rendered as text.
 
 [Open-Meteo and CAMS attribution](https://open-meteo.com/en/docs/air-quality-api) · [Chrome Prompt API](https://developer.chrome.com/docs/ai/prompt-api)
+
+
+## Route comparison scenarios
+
+| Household inputs | Expected result |
+| --- | --- |
+| Two 4 km trips, one 4 km shared route | 4 vehicle-km saved |
+| Two 4 km trips, one 8 km shared route | Equal distance |
+| Two 4 km trips, one 9 km shared route | 1 extra vehicle-km. Try a closer pickup point. |
+
+The comparison uses a shared zero baseline for both distances. The same values are available in text. Labels identify the units where the family enters the distance, and validation gives the supported range.
+
+Design references: [Government Analysis Function chart guidance](https://analysisfunction.civilservice.gov.uk/policy-store/data-visualisation-charts/) and [GOV.UK form input guidance](https://design-system.service.gov.uk/components/text-input/).
+
+When all six upcoming hourly model estimates are available, the air panel identifies the lowest predicted PM₂.₅ and its time in IST. A flat forecast is labelled as level. Incomplete hourly data leaves only the current estimate. City forecasts describe outdoor conditions at model resolution and do not predict personal exposure.
