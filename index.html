@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Build a lower-emission household routine with city air context and transparent trip calculations."><title>AirDay · Family air planner</title>
+<link rel="stylesheet" href="style.css"><main>
+<header><b>AirDay</b><span>Family air planner</span></header>
+<h1>A cleaner school run.<br>A quieter evening.</h1>
+<p>Plan your next outing, reduce indoor smoke and see how much driving a shared trip could save.</p>
+<section aria-labelledby="routine"><h2 id="routine">Your routine</h2><form id="plan">
+<label>City<select id="city"><option>Bengaluru</option><option>Delhi</option><option>Mumbai</option></select></label>
+<label>Outing<select id="outing"><option>School pickup</option><option>Grocery collection</option><option>Community event</option></select></label>
+<label>Indoor smoke source<select id="source"><option>Incense</option><option>Candles</option><option>None selected</option></select></label>
+<label>Separate car trips<input id="trips" type="number" value="2" min="1" max="20" required></label>
+<label>Each round trip (km)<input id="km" type="number" value="4" min="0.1" max="500" step="0.1" required></label>
+<label>Combined route (km)<input id="combined" type="number" value="4" min="0.1" max="1000" step="0.1" required></label></form></section>
+<section><h2>Outdoor air</h2><p id="air" role="status">No reading loaded.</p><button id="refresh">Get city estimate</button><small>Modelled PM₂.₅ from CAMS via Open-Meteo. Check your local advisory for activity guidance.</small></section>
+<section><h2>Your household plan</h2><div id="result" aria-live="polite"></div></section>
+<section><h2>Explain it to my family</h2><button id="generate">Generate a family briefing</button><p id="brief" role="status">Uses Gemini Nano on supported Chrome devices. The first use may download the model.</p></section>
+<footer><a href="https://open-meteo.com/en/docs/air-quality-api">Air data and attribution</a> · <a href="https://airquality.cpcb.gov.in/AQI_India/">India’s official AQI dashboard</a></footer></main><script type="module" src="app.mjs"></script></html>

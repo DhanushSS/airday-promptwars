@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {plan,formatAir} from './planner.mjs';
+const facts={outing:'School pickup',source:'Incense',trips:2,km:4,combined:4};
+test('two trips become one',()=>assert.match(plan(facts).impact,/4 vehicle-km avoided/));
+test('a detour can add kilometres',()=>assert.match(plan({...facts,combined:9}).impact,/1 vehicle-km added/));
+test('reject invalid journey inputs',()=>{for(const trips of [0,21,NaN,1.5])assert.equal(plan({...facts,trips}),null);});
+test('community and candle alternatives',()=>{const p=plan({...facts,outing:'Community event',source:'Candles'});assert.match(p.outing,/neighbours/);assert.match(p.indoor,/rechargeable/);});
+test('zero pollutant is valid',()=>assert.match(formatAir({current:{time:100,pm2_5:0}},100000),/PM₂.₅ 0/));
+test('missing and stale readings rejected',()=>{assert.throws(()=>formatAir({}));assert.throws(()=>formatAir({current:{time:1,pm2_5:19}},86400000));});
